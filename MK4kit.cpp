@@ -19,7 +19,7 @@ class Linked_List{
 
         void InsertFront(int val)
         {
-            Linked_List* Temp = this;
+            Linked_List Temp = *this;
             while(this.PointerNext){
                 Temp = Temp.PointerNext;
             }
@@ -35,28 +35,36 @@ class Linked_List{
         }
 
         void PopFront(){
-            Linked_List* old = this;
+            Linked_List old = *this;
             this = this.PointerNext;
             delete(old);
         }
 
         void PopBack(){
-            Linked_List* Temp = this;
+            Linked_List Temp = *this;
             while(Temp.PointerNext){
                 Temp = Temp.PointerNext;
             }
-            if(Temp == this){
+            if(Temp == *this){
                 this = NULL;
-                delete(Temp);
             }
+            delete(Temp);
         }
 
-        // int ValueAt(int target){
-        //     if(target > size-1) return NULL;
-        //     for(int index = 0; index < target; index++){
-        //         if(index == target) return 
-        //     }
-        // }
+        T ValueAt(int target){
+            if(target >= size) return NULL;
+            Linked_List Temp = *this;
+            for(int index = 0; index < target; index++)
+            {
+                Temp = Temp.PointerNext;
+            }
+            return Temp.Data;
+        }
+
+        void Sort(){
+            //mergeSort applied
+            
+        }
 };
 
 int main(void)
